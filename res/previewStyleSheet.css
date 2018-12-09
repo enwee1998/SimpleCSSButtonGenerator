@@ -1,0 +1,18 @@
+.previewCard {
+	-fx-background-color: #ffffff;
+	-fx-font-family: Quicksand;
+	-fx-background-radius: 10px;
+	-fx-border-radius: 10px;
+	-fx-border-width: 5px;
+	-fx-border-color: #ffffff;
+	-fx-effect: dropshadow(three-pass-box, #131A27, 20, 0, 0, 0);
+}
+
+.previewCard:hover {
+	-fx-effect: dropshadow(three-pass-box, #57FFFF, 10, 0, 0, 0);
+}
+
+.buttonTemplatePage {
+	-fx-background-color: #2C3447;
+}
+
