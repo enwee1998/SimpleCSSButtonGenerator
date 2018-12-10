@@ -1,10 +1,12 @@
 package application;
 
-import java.io.File;import java.io.PrintWriter;import java.util.ArrayList;import adjustor.ButtonAdjust;import adjustor.NewButton;import javafx.geometry.Insets;import javafx.geometry.Pos;import javafx.scene.Cursor;import javafx.scene.Scene;import javafx.scene.control.Button;import javafx.scene.control.Label;import javafx.scene.control.TextArea;import javafx.scene.layout.HBox;import javafx.scene.layout.StackPane;import javafx.scene.layout.VBox;import javafx.scene.paint.Color;import javafx.scene.shape.Rectangle;import javafx.stage.FileChooser;import javafx.stage.Modality;import javafx.stage.Screen;import javafx.stage.Stage;import javafx.stage.StageStyle;
+import java.io.File;import java.io.PrintWriter;import java.util.ArrayList;import adjustor.ButtonAdjust;import adjustor.ButtonPreview;import adjustor.NewButton;import javafx.geometry.Insets;import javafx.geometry.Pos;import javafx.scene.Scene;import javafx.scene.control.Button;import javafx.scene.control.Label;import javafx.scene.control.TextArea;import javafx.scene.layout.HBox;import javafx.scene.layout.VBox;import javafx.scene.paint.Color;import javafx.stage.FileChooser;import javafx.stage.Modality;import javafx.stage.Stage;import javafx.stage.StageStyle;
 
 public class Generator extends HBox {
 	
 	private Scene generatorScene;
+	private ButtonPreview buttonPreview;
+	private ButtonAdjust buttonAdjust;
 	private ArrayList<String> cssCode;
 	
 	static final String CONTROL_CSS_PATH = ClassLoader.getSystemResource("controlStyleSheet.css").toString();
@@ -13,54 +15,23 @@ public class Generator extends HBox {
 		
 		cssCode = new ArrayList<String>();
 		
-		final ButtonAdjust btnAdjust = new ButtonAdjust(button);
-		
-		final Rectangle bgButtonShow = new Rectangle(300, 300);
-		bgButtonShow.setFill(Color.web("#DADADA"));
-		
-		final StackPane buttonShow = new StackPane();
-		buttonShow.setPrefWidth(Screen.getPrimary().getVisualBounds().getWidth());
-		buttonShow.setPrefHeight(680);
-		buttonShow.getChildren().addAll(bgButtonShow, button.getButtonBorder(), button);
-		
-		final VBox buttonPreview = new VBox(20);
-		buttonPreview.getStyleClass().add("button-show");
-		buttonPreview.setPadding(new Insets(0, 0, 20, 0));
-		buttonPreview.setAlignment(Pos.CENTER);
-		
-		final HBox bottomMenu = new HBox(20);
-		bottomMenu.setAlignment(Pos.CENTER);
-		
-		final Button exportButton = new Button("EXPORT");
-		exportButton.setCursor(Cursor.HAND);
-		exportButton.setPrefSize(150, 70);
-		exportButton.getStyleClass().add("export-button");
-		exportButton.setOnAction(export -> {
+		buttonAdjust = new ButtonAdjust(button);
+		buttonPreview = new ButtonPreview(button);
+
+		buttonPreview.getExportButton().setOnAction(export -> {
 			createExportDialog(button);
 		});
-		
-		final Button newButton = new Button("NEW BUTTON");
-		newButton.setCursor(Cursor.HAND);
-		newButton.setPrefSize(150, 70);
-		newButton.getStyleClass().add("new-button");
-		newButton.setOnAction(newBtn -> {
+
+		buttonPreview.getNewButton().setOnAction(newBtn -> {
 			ButtonTemplate btnTemplate = new ButtonTemplate(primaryStage);
 			primaryStage.setScene(btnTemplate.getButtonTemplateScene());
 		});
 		
-		bottomMenu.getChildren().addAll(exportButton, newButton);
-		buttonPreview.getChildren().addAll(buttonShow, bottomMenu);
-		
-		
-		getChildren().addAll(btnAdjust, buttonPreview);
+		getChildren().addAll(buttonAdjust, buttonPreview);
 		
 		generatorScene = new Scene(this);
 		generatorScene.getStylesheets().add(CONTROL_CSS_PATH);
 		
-	}
-
-	public Scene getGeneratorScene() {
-		return generatorScene;
 	}
 	
 	private void createExportDialog(NewButton button) {
@@ -188,6 +159,10 @@ public class Generator extends HBox {
         } catch (Exception e) {
         	System.out.println("Cannot save this file.");
         }
+	}
+
+	public Scene getGeneratorScene() {
+		return generatorScene;
 	}
 	
 }
