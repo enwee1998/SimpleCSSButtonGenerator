@@ -10,7 +10,7 @@ public class BackgroundAdjust extends Adjustor {
 	private ColorInputField toColor;
 	
 	public BackgroundAdjust(NewButton button) {
-		super("Background");
+		super("BACKGROUND");
 		
 		gradientApplyCheckBox = new CheckBox("Apply Linear Gradient Background");
 		
