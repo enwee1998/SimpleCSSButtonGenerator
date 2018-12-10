@@ -14,7 +14,7 @@ public class TextShadowAdjust extends Adjustor {
 		super("TEXT SHADOW");
 		
 		applyCheckBox = new CheckBox("");
-		blurRadius = new SliderInputField("Shadow Radius", (int)button.getTextShadow().getRadius(), 0, 10);
+		blurRadius = new SliderInputField("Blur Radius", (int)button.getTextShadow().getRadius(), 0, 10);
 		shadowXOffest = new SliderInputField("X Offset", (int)button.getTextShadow().getOffsetX(), -5, 5);
 		shadowYOffest = new SliderInputField("Y Offset", (int)button.getTextShadow().getOffsetY(), -5, 5);
 		shadowColor = new ColorInputField("Shadow Color", button.getTextShadow().getColor());
