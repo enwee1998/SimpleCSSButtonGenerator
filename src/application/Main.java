@@ -27,6 +27,7 @@ public class Main extends Application {
 		Rectangle2D screenBounds = Screen.getPrimary().getVisualBounds();
 		primaryStage.setX((screenBounds.getWidth() - primaryStage.getWidth()) / 2);
 		primaryStage.setY((screenBounds.getHeight() - primaryStage.getHeight()) / 2);
+		primaryStage.setResizable(false);
 		primaryStage.show();
 		
 	}
