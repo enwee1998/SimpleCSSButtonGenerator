@@ -12,7 +12,7 @@ import javafx.scene.control.Toggle;import javafx.scene.control.ToggleButton;impo
 public class LabelAdjust extends Adjustor {
 
 	private StringInputField buttonLabel;
-	private SliderInputField fontSizeAdjust;
+	private SliderInputField fontSize;
 	private ColorInputField fontColor;
 	private ToggleButton leftAlignment;
 	private ToggleButton centerAlignment;
@@ -25,7 +25,7 @@ public class LabelAdjust extends Adjustor {
 		buttonLabel = new StringInputField("Label");
 		buttonLabel.getTextInput().setText(button.getTextLabel().getText());
 		fontColor = new ColorInputField("Font Color", (Color) button.getTextLabel().getTextFill());
-		fontSizeAdjust = new SliderInputField("Font Size", button.getFontSize(), 0, 36);
+		fontSize = new SliderInputField("Font Size", button.getFontSize(), 0, 36);
 		
 		groupAlignment = new ToggleGroup();
 		
@@ -87,7 +87,7 @@ public class LabelAdjust extends Adjustor {
 		
 		addOption(buttonLabel);
 		addOption(fontColor);
-		addOption(fontSizeAdjust);
+		addOption(fontSize);
 		
 	}
 	
@@ -96,7 +96,7 @@ public class LabelAdjust extends Adjustor {
 		button.getButtonBorder().textProperty().bind(buttonLabel.getTextInput().textProperty());
 		button.getTextLabel().textProperty().bind(buttonLabel.getTextInput().textProperty());
 		button.getTextLabel().textFillProperty().bind(fontColor.getColorPicker().valueProperty());
-		fontSizeAdjust.getSlider().valueProperty().addListener(new ChangeListener<Number>() {
+		fontSize.getSlider().valueProperty().addListener(new ChangeListener<Number>() {
 			
 			@Override
 			public void changed(ObservableValue<? extends Number> observableValue, Number oldValue, Number newValue) {
