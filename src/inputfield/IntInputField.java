@@ -1,10 +1,9 @@
 package inputfield;
 
-import javafx.scene.Node;import javafx.scene.control.Label;import javafx.scene.layout.GridPane;
+import javafx.scene.control.Label;import javafx.scene.layout.GridPane;
 
-public class IntInputField extends GridPane implements OptionAddable {
-	
-	private int elementPos;
+public class IntInputField extends GridPane {
+
 	private Label label;
 	private IntField intInput;
 	
@@ -18,12 +17,6 @@ public class IntInputField extends GridPane implements OptionAddable {
 		add(label, 0, 0);
 		add(intInput, 0, 1);
 
-	}
-	
-	@Override
-	public void addOption(Node option) {
-		add(option, elementPos, 1);
-		elementPos++;
 	}
 
 	public IntField getIntInput() {
